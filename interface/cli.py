@@ -2,6 +2,7 @@ import requests
 
 from core.capitals import CapitalsGame
 from core.game import Round
+from core.game import Difficulty
 
 def run():
     url = 'http://localhost:8080'
@@ -43,7 +44,18 @@ def run():
             print('Not a valid option!')
             continue
 
-        r = Round(games[choice][1].build_game(url))
+        print(f'Welcome to {games[choice][0]}!')
+        print('Which difficulty would you like to play at?\n\t1) Easy\n\t2) Medium\n\t3) Hard')
+        try:
+            difficulty = int(input('Selection: '))
+        except ValueError:
+            print('Not a valid option!')
+            continue
+        if difficulty not in [1, 2, 3]:
+            print('Not a valid option!')
+            continue
+
+        r = Round(games[choice][1].build_game(url, Difficulty(difficulty)))
         r.play()
 
 

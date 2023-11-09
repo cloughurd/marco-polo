@@ -11,7 +11,7 @@ class Game:
         self.difficulty = difficulty
 
     @classmethod
-    def build_game(cls, url: str):
+    def build_game(cls, url: str, difficulty: Difficulty):
         raise NotImplementedError
 
     def __iter__(self):
