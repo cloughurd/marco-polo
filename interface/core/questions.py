@@ -41,5 +41,5 @@ class MultipleChoiceQuestion(Question):
             return True
         try:
             return super().eval(self.choices[int(response)])
-        except ValueError:
+        except (ValueError, IndexError):
             return False

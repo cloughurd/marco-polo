@@ -8,8 +8,8 @@ from core.questions import MultipleChoiceQuestion
 
 
 class CapitalsGame(Game):
-    def __init__(self, capitals_map: Dict[str, str], other_cities: Dict[str, List[str]], *, difficulty: Difficulty = Difficulty.HARD) -> None:
-        super().__init__(difficulty=difficulty)
+    def __init__(self, capitals_map: Dict[str, str], other_cities: Dict[str, List[str]]) -> None:
+        super().__init__()
         self.capitals_map = capitals_map
         self.other_cities = other_cities
 
@@ -40,11 +40,11 @@ class CapitalsGame(Game):
         return len(self.capitals_map)
 
     @classmethod
-    def build_game(cls, url: str, difficulty: Difficulty):
+    def build_game(cls, url: str):
         r = requests.get(f'{url}/states')
         capitals = {}
         other_cities = {}
         for s in r.json():
             capitals[s['name']] = s['capital']
             other_cities[s['name']] = s['cityList']
-        return cls(capitals, other_cities, difficulty=difficulty)
+        return cls(capitals, other_cities)

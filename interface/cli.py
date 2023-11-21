@@ -16,7 +16,7 @@ def run():
         return
 
     games = [
-        ('Capitals Quiz', CapitalsGame),
+        ('Capitals Quiz', CapitalsGame.build_game(url)),
     ]
 
     choice = ''
@@ -55,7 +55,7 @@ def run():
             print('Not a valid option!')
             continue
 
-        r = Round(games[choice][1].build_game(url, Difficulty(difficulty)))
+        r = Round(games[choice][1], Difficulty(difficulty))
         r.play()
 
 
