@@ -23,11 +23,11 @@ class CapitalsGame(Game):
             return MultipleChoiceQuestion(question, capital, self._get_full_city_list(capital))
 
     def _get_full_city_list(self, capital: str) -> List[str]:
-        full_list = {}
+        full_list = set()
         for city_list in self.other_cities.values():
             full_list.update(city_list)
         if capital in full_list:
-            full_list.pop(capital)
+            full_list.remove(capital)
         return full_list
 
     def __iter__(self):

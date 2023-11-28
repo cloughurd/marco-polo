@@ -86,7 +86,7 @@ func (h *StateHandler) getStates(includeCities bool) ([]state, error) {
 func (h *StateHandler) getCities(stateID string) (string, []string, error) {
 	var capital string
 	var cityList []string
-	query := "SELECT name, is_capital FROM city WHERE state_id = '?'"
+	query := "SELECT name, is_capital FROM city WHERE state_id = ?"
 	rows, err := h.db.Query(query, stateID)
 	if err != nil {
 		return "", nil, err

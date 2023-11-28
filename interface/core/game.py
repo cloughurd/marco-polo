@@ -35,7 +35,8 @@ class Round:
         self.game.difficulty = difficulty
 
     def play(self) -> None:
-        for question in self.game:
+        for idx, question in enumerate(self.game):
+            print(f'Question #{idx + 1}')
             print(question)
             correct = None
             while correct is None:
