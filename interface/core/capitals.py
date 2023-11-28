@@ -1,10 +1,10 @@
 import random
 import requests
 from typing import Dict, List
-from core.game import Game, Difficulty
+from interface.core.game import Game, Difficulty
 
-from core.questions import OpenQuestion, Question
-from core.questions import MultipleChoiceQuestion
+from interface.core.questions import OpenQuestion, Question
+from interface.core.questions import MultipleChoiceQuestion
 
 
 class CapitalsGame(Game):
@@ -41,7 +41,7 @@ class CapitalsGame(Game):
 
     @classmethod
     def build_game(cls, url: str):
-        r = requests.get(f'{url}/states')
+        r = requests.get(f'{url}/states?includeCities=true')
         capitals = {}
         other_cities = {}
         for s in r.json():

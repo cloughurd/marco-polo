@@ -1,8 +1,9 @@
 import requests
 
-from core.capitals import CapitalsGame
-from core.game import Round
-from core.game import Difficulty
+from interface.core.capitals import CapitalsGame
+from interface.core.game import Round
+from interface.core.game import Difficulty
+from interface.core.facts import StateFactsGame
 
 def run():
     url = 'http://localhost:8080'
@@ -17,6 +18,7 @@ def run():
 
     games = [
         ('Capitals Quiz', CapitalsGame.build_game(url)),
+        ('State Facts', StateFactsGame.build_game(url)),
     ]
 
     choice = ''
@@ -27,7 +29,7 @@ def run():
         for idx, g in enumerate(games):
             name = g[0]
             games_map[name] = idx
-            print(f'\n\t{idx}) {name}')
+            print(f'\t{idx}) {name}')
         print('Enter "quit" to quit.')
         choice = input('Selection: ').lower()
         if choice == 'quit':
